@@ -1,6 +1,5 @@
 
 <mat-card>
-  <mat-card-title>Bank Details</mat-card-title>
   <mat-card-content>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -54,8 +53,9 @@
           <td mat-cell *matCellDef="let element">
             <form [formGroup]="bankDetailsForm">
             <mat-form-field>
-              <input type="text" matInput formControlName="comment" [(ngModel)]="comment" />
+              <input type="text" matInput formControlName="comment" [(ngModel)]="comment" (paste)="onPaste($event)"/>
               <mat-error *ngIf="checkError('comment', 'required')">Comment is required</mat-error>
+              <mat-error *ngIf="checkError('comment', 'pattern')">Allow English and numbers only</mat-error>
             </mat-form-field>
             </form>
           </td>
@@ -80,8 +80,8 @@
     </div>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-raised-button>Cancel</button>
-    <button mat-raised-button color="primary" (click)="save()">Save</button>
+    <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="accent" (click)="save()" [disabled]="!bankDetailsForm.valid">Save</button>
   </mat-card-actions>
 </mat-card>
 

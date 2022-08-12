@@ -11,6 +11,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const _COMMONMODULE  = [
   CommonModule,
@@ -26,7 +29,10 @@ const _COMMONMODULE  = [
   MatPaginatorModule,
   MatSortModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatToolbarModule,
+  MatSnackBarModule,
+  MatProgressBarModule
 ]
 
 

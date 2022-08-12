@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Bank } from 'src/app/modals/Bank';
 import { ConstantsUrl } from 'src/app/utils/Constant.urls';
 import { environment } from 'src/environments/environment';
@@ -14,7 +15,7 @@ export class BankListService {
   ) { }
 
 
-  getBankList(){
+  getBankList(): Observable<Bank>{
     let url = environment.BASE_URL+ ConstantsUrl.Bank_List;
     return this.http.get<Bank>(url);
   }

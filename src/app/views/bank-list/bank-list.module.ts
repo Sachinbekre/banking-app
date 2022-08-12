@@ -5,12 +5,14 @@ import { BankListRoutingModule } from './bank-list-routing.module';
 import { BankListComponent } from './bank-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BankDetailsComponent } from './bank-details/bank-details.component';
+import { ErrorHandlerComponent } from './error-handler/error-handler.component';
 
 
 @NgModule({
   declarations: [
     BankListComponent,
-    BankDetailsComponent
+    BankDetailsComponent,
+    ErrorHandlerComponent
   ],
   imports: [
     CommonModule,

@@ -9,7 +9,7 @@ import { Bank } from 'src/app/modals/Bank';
   styleUrls: ['./bank-details.component.scss'],
 })
 export class BankDetailsComponent implements OnInit {
-  @Input() bankadata!: Bank;
+  @Input() bankadata: Bank;
   dataSource = new MatTableDataSource<Bank>([]);
   @Output() updatedData = new EventEmitter<any>();
   displayedColumns: string[] = [
@@ -23,13 +23,14 @@ export class BankDetailsComponent implements OnInit {
   ];
   commentedDate = new Date();
   public comment:string ='';
-  public bankDetailsForm !: FormGroup;
+  public bankDetailsForm : FormGroup;
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.init();
+    let validPattern = /^[a-zA-Z0-9_]*$/;
     this.bankDetailsForm = this.formBuilder.group({
-      comment: ["", Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9].*()")])],
+      comment: ["", Validators.compose([Validators.required,Validators.pattern(validPattern)])],
     });
   }
 
@@ -47,5 +48,16 @@ export class BankDetailsComponent implements OnInit {
     this.dataSource.data[0].comment = this.comment;
     this.dataSource.data[0].dateTime = new Date();
     this.updatedData.emit(this.dataSource.data);
+  }
+
+  cancel(){
+    this.updatedData.emit(false);
+  }
+
+
+
+  onPaste(e:any) {
+    e.preventDefault();
+    return false;
   }
 }
