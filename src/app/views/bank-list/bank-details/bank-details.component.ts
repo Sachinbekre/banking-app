@@ -28,7 +28,7 @@ export class BankDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
-    let validPattern = /^[a-zA-Z0-9_]*$/;
+    let validPattern = /^[a-zA-Z0-9_ ]*$/;
     this.bankDetailsForm = this.formBuilder.group({
       comment: ["", Validators.compose([Validators.required,Validators.pattern(validPattern)])],
     });

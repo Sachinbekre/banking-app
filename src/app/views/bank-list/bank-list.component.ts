@@ -38,7 +38,6 @@ export class BankListComponent implements OnInit, AfterViewInit {
     this.loader = true;
     this._banklistService.getBankList().subscribe(
       (res: any) => {
-        debugger
         this.loader = false;
         if (res.length > 0) {
           this.dataSource.data = res;
@@ -48,16 +47,25 @@ export class BankListComponent implements OnInit, AfterViewInit {
         }else{
           this.errorMessage = res.error?res.error:'No data available in the table';
           this.viewBankList = 2;
+          this.toaster(this.errorMessage);
         }
       },
       (err) => {
-        debugger
-        console.log("error getting",err)
         this.viewBankList = 2;
         this.loader = false;
         this.errorMessage = err.message;
+        this.toaster(err.message);
       }
     );
+  }
+
+  toaster(msg:string){
+    this._snackBar.open(msg, '', {
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      duration: 2000,
+      panelClass: ['mat-toolbar', 'mat-primary']
+    });
   }
 
   ngAfterViewInit() {
@@ -79,7 +87,7 @@ export class BankListComponent implements OnInit, AfterViewInit {
       this.title = 'Bank List';
       this.ref.detectChanges();
       this.dataSource.paginator = this.paginator;
-      this._snackBar.open('Comments Updated Successfuly', 'X', {
+      this._snackBar.open('Comments Updated Successfuly', '', {
         horizontalPosition: 'right',
         verticalPosition: 'top',
         duration: 2000,

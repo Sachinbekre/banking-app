@@ -1,5 +1,4 @@
 .view-label{
-  cursor: pointer;
   text-decoration: underline;
 }
 
@@ -10,7 +9,13 @@
 .mat-header-cell {
   background-color: #393939;
   color: white;
+  font-size: 14px;
 }
+
+.mat-cell{
+  font-size: 13px;
+}
+
 .example-spacer {
   flex: 1 1 auto;
 }
